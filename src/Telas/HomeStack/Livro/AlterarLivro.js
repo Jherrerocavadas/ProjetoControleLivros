@@ -1,8 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import { ActivityIndicator, Alert, Modal, Pressable, StyleSheet, Text, View } from "react-native";
-import { PMButton } from "../../../Components/PMButton";
 import { useState, useEffect } from "react";
-import { PMInputCadastro, PMInputModal } from "../../../Components/PMTextInput";
 import { alterarLivro, buscarLivro } from "../../../utils/Livro/livroController";
 import { DateFieldModal, FieldAlterarModal, ModalAlterarLivro } from "../../../Components/Modais";
 import { ClickableDatePicker } from "../../../Components/ClickableDatePicker";
@@ -40,6 +38,7 @@ export function AlterarLivro({route}) {
     }
   
     if(modalVisible){
+      console.warn(titulo)
       return (
         <ModalAlterarLivro
         modalVisible={modalVisible}
@@ -47,7 +46,7 @@ export function AlterarLivro({route}) {
         id={id}
         labelID="Livro: ID"
         labelActionBtn="Alterar Livro"
-        action={() => {alterarLivro({id, titulo, autor}).then((response)=>{
+        action={() => {alterarLivro({id, titulo, autor, dataCompra}).then((response)=>{
           Alert.alert(response.title,
             response.text)
           navigation.navigate('LivroView')
@@ -103,12 +102,14 @@ export function AlterarLivro({route}) {
             }
             else{
               console.log(response)
-              console.log(response.titulo)
+              console.log(modalVisible)
+              console.log(response.autor)
+              console.log(response.dataCompra)
               setTitulo(response.titulo) 
               setAutor(response.autor)
               setDataCompra(response.dataCompra)
               setModalVisible(!modalVisible)
-              // setIsLoading(false)
+              setIsLoading(false)
               console.log(titulo)
             }
            

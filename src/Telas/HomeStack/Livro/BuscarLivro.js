@@ -15,8 +15,7 @@ export function BuscarLivro({route}) {
     const [dataCompra, setDataCompra] = useState("Data")
     const [isLoading, setIsLoading] = useState(false)
     const [modalVisible, setModalVisible] = useState(false);
-    console.warn(dataCompra)
-    console.warn(new Date(dataCompra+"T03:00:000Z").toLocaleDateString())
+
 
        
     if(isLoading){
