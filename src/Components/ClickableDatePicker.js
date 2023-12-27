@@ -48,7 +48,7 @@ export default function ClickableDatePicker({
 
       return(
         <TouchableOpacity onPress={showPicker}>
-        <Text style={style}>{value.toISOString()}</Text>
+        <Text style={style}>{value.toLocaleDateString()}</Text>
 
         </TouchableOpacity>
        

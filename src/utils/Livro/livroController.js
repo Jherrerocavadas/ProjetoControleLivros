@@ -38,14 +38,15 @@ export async function inserirLivro(navigation, titulo, autor, dataCompra){
 
 }
 
-export async function alterarLivro({id, nome, telefone}){
+export async function alterarLivro({id, titulo, autor, dataCompra}){
     
     // console.log(`id: ${id}`)
     // console.log(`nome: ${nome}`)
     // console.log(`telefone: ${telefone}`)
     return api.put(`/livros/${parseInt(id)}`,{
-        nome: nome,
-        telefone: telefone
+        titulo: titulo,
+        autor: autor,
+        dataCompra: dataCompra
     
     }).then(async (response)=>{// Enviar dados do usuário
             // console.log(request.body)
@@ -75,13 +76,19 @@ export async function buscarLivro({id}) {
                 }
                 //console.log(response.data)
                 //Retornar os dados de busca
+             
+                //Converter String de data para objeto de data
+                
+                response.data .dataCompra = new Date(response.data .dataCompra)// +"T03:00:000Z")
+   
+                
                 return response.data
                      
             })
             .catch(async (error)=>
             {   
                 
-                console.warn("ERRO!")
+                console.warn("Erro na busca do Livro!")
                 console.warn(`error: ${error.code}`)
                 
                

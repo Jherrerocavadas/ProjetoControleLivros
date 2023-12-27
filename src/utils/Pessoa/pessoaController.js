@@ -63,24 +63,18 @@ export async function alterarPessoa({id, nome, telefone}){
 }
 
 export async function buscarPessoa({id}) {
+    console.log(`id: ${id}`)
     return api.get(`/pessoas/${id}` )
     .then(async (response)=>
     
-            { 
-        
-                if(response.data.erro){
-                    //Retornar o código de erro
-                    return response.data.erro.errno
-                }
-                //console.log(response.data)
+            {
                 //Retornar os dados de busca
-                return response.data
-                     
+                return response.data        
             })
             .catch(async (error)=>
             {   
                 
-                console.warn("ERRO!")
+                console.warn("Erro ao buscar pessoa!")
                 console.warn(`error: ${error.code}`)
                 
                

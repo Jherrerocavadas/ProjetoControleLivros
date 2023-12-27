@@ -1,23 +1,13 @@
 import React from "react";
-import {View, TextInput } from 'react-native';
-import { PMText } from "./PMText";
+import {TextInput, StyleSheet } from 'react-native';
+import { SelectList } from "react-native-dropdown-select-list";
+import { useState } from "react";
 
 
 export function PMInputCadastro(
     {valor, setter, placeholderText = "", tipoInput, maxInput, icone, posIcone, isTextoSeguro=false, isEditavel=true}
   ) {
-    const input = {
-      height:30,
-      width:350,
-      margin: 15,
-      fontSize: 20,
-      fontWeight: "bold",
-      color:"gray",
-      borderBottomColor: 'black',
-      borderBottomWidth: 2,
-      alignItems: "center",
-      justifyContent: "center",
-  };
+  
 
     const error = {
       height:30,
@@ -34,7 +24,7 @@ export function PMInputCadastro(
   return (
 
     <TextInput
-      style={input}
+      style={styles.input}
       onChangeText={setter}
       value={valor}
       error = {error}
@@ -50,6 +40,56 @@ export function PMInputCadastro(
       //Colocar esquema para alternar a máscara de senha
     />
   );
+}
+
+export function SearchDropDown({data, setSelected, fieldPlaceHolder, searchPlaceholder, onSelect, save, defaultOption}){
+
+  const [colorTextSelected, setColorTextSelected] = useState(false)
+
+  if(colorTextSelected){
+    return(
+
+      <SelectList
+      data={data}
+      setSelected={setSelected}
+      inputStyles={{...styles.searchDropDownTexts, color:"black" }}
+      boxStyles={styles.box}
+      dropdownStyles={styles.dropdown}
+      dropdownTextStyles={styles.searchDropDownTexts}
+      placeholder={fieldPlaceHolder}
+      searchPlaceholder={searchPlaceholder}
+      onSelect={()=> onSelect}
+      save={save}
+      notFoundText="Sem dados"
+      defaultOption={defaultOption}
+      // dropdownShown={false}
+      
+      
+    />
+    )
+  }
+return(
+
+  <SelectList
+  data={data}
+  setSelected={setSelected}
+  inputStyles={styles.searchDropDownTexts}
+  boxStyles={styles.box}
+  dropdownStyles={styles.dropdown}
+  dropdownTextStyles={styles.searchDropDownTexts}
+  placeholder={fieldPlaceHolder}
+  searchPlaceholder={searchPlaceholder}
+  onSelect={()=>{
+    setColorTextSelected(!colorTextSelected)
+    if(onSelect !== undefined){
+      onSelect()
+    }
+    
+  }}
+  
+/>
+)
+
 }
 
 export function PMInputModal(
@@ -87,3 +127,47 @@ return (
   />
 );
 }
+
+
+const styles = StyleSheet.create(
+{
+
+  input: {
+    height:30,
+    width:350,
+    margin: 15,
+    paddingStart:18,
+    fontSize: 20,
+    fontWeight: "bold",
+    color:"gray",
+    borderBottomColor: 'black',
+    borderBottomWidth: 2,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  box:{
+    borderWidth:0,
+    borderRadius:0,
+    borderColor:"black",
+    width:350,
+    borderBottomWidth: 2,
+    alignItems: "center",
+  },
+
+  dropdown:{
+    borderColor: 'black',
+    borderWidth: 2,
+    borderTopWidth:0,
+    borderTopLeftRadius:0,
+    borderTopRightRadius:0
+
+  },
+  
+  searchDropDownTexts:{
+    fontSize: 20,
+    fontWeight: "bold",
+    color:"gray",
+  }
+}
+)
