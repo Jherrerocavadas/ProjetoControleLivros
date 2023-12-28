@@ -1,14 +1,13 @@
 import React, { useContext, useState, useEffect, isValidElement } from "react";
-import { Alert, StyleSheet, Text, View, ActivityIndicator } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { StyleSheet, View } from "react-native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 
 {
   /*---------- <Componentes personalizados> ----------*/
 }
 import HeaderLogo from "../../Components/Header";
 import { PMButton } from "../../Components/PMButton";
-import { PMInputCadastro } from "../../Components/PMTextInput";
-import { PMText, PMTextLink } from "../../Components/PMText";
+import { PMText } from "../../Components/PMText";
 import { contagemEmprestimos } from "../../utils/Emprestimo/emprestimoController";
 import { contagemLivros } from "../../utils/Livro/livroController";
 import { EntityCounter } from "../../Components/EntityCounter";
@@ -58,30 +57,30 @@ export function Home({ route }) {
   const [isLoadingLivro, setIsLoadingLivro] = useState(true);
   const [isLoadingEmprestimo, setIsLoadingEmprestimo] = useState(true);
 
-   useEffect(() => {
+   useFocusEffect(() => {
     loadCountEmprestimo()
       .then((response) => {
-        console.log("EmprestimoResponse: " + response);
+        // console.log("EmprestimoResponse: " + response);
         setCountEmprestimos(response.countEmprestimo);
         setIsLoadingEmprestimo(response.isLoading);
       })
       .catch((error) => {
         console.log("Erro: " + error);
       });
-  }, [loadCountEmprestimo().then((response)=>{return response})]);
+  });
 
 
-  useEffect(()=>{
+  useFocusEffect(()=>{
     loadCountLivro().then((response)=>
         {
-          console.log("LivroResponse: "+ response.countLivro)
+          // console.log("LivroResponse: "+ response.countLivro)
           setCountLivros(response.countLivro)
           setIsLoadingLivro(response.isLoading)
 
         }).catch((error)=>{
           console.log("ErroLivro: " + error)
         })
-  },[loadCountLivro().then((response)=>{return response})])
+  })
 
   return (
     <View style={styles.container}>
@@ -93,11 +92,15 @@ export function Home({ route }) {
         label={"Livros\nCadastrados"}
         counterValue={countLivros}
         isLoading={isLoadingLivro}
+        isClickable={true}
+        action={()=>navigation.navigate("ListarLivros")}
       ></EntityCounter>
       <EntityCounter
         label={"Empréstimos\nVigentes"}
         counterValue={countEmprestimos}
         isLoading={isLoadingEmprestimo}
+        isClickable={true}
+        action={()=>navigation.navigate("ListarEmprestimos")}
       ></EntityCounter>
       </View>
 
