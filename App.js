@@ -17,18 +17,22 @@ import { AlterarPessoa } from './src/Telas/HomeStack/Pessoa/AlterarPessoa';
 import { BuscarPessoa } from './src/Telas/HomeStack/Pessoa/BuscarPessoa';
 import { ExcluirPessoa } from './src/Telas/HomeStack/Pessoa/ExcluirPessoa';
 import { ListarPessoa } from './src/Telas/HomeStack/Pessoa/ListarPessoa';
+import { PessoaDetail } from './src/Telas/HomeStack/Pessoa/PessoaDetail'
 
 import { InserirLivro } from './src/Telas/HomeStack/Livro/InserirLivro';
 import { AlterarLivro } from './src/Telas/HomeStack/Livro/AlterarLivro';
 import { BuscarLivro } from './src/Telas/HomeStack/Livro/BuscarLivro';
 import { ExcluirLivro } from './src/Telas/HomeStack/Livro/ExcluirLivro';
 import { ListarLivro } from './src/Telas/HomeStack/Livro/ListarLivro';
+import { LivroDetail } from './src/Telas/HomeStack/Livro/LivroDetail'
 
 import { InserirEmprestimo } from './src/Telas/HomeStack/Emprestimo/InserirEmprestimo';
 import { AlterarEmprestimo } from './src/Telas/HomeStack/Emprestimo/AlterarEmprestimo';
 import { BuscarEmprestimo } from './src/Telas/HomeStack/Emprestimo/BuscarEmprestimo';
 import { ExcluirEmprestimo } from './src/Telas/HomeStack/Emprestimo/ExcluirEmprestimo';
 import { ListarEmprestimo } from './src/Telas/HomeStack/Emprestimo/ListarEmprestimo';
+import { EmprestimoDetail } from './src/Telas/HomeStack/Emprestimo/EmprestimoDetail';
+
 
 
 {/*---------- <Componentes personalizados> ----------*/}
@@ -52,7 +56,12 @@ function HomeStackScreen() {
       <HomeStack.Screen name='Inicial' component={Home} />
       <HomeStack.Screen name="Livros" component ={LivroStackScreen}/>
       <HomeStack.Screen name="Pessoas" component ={PessoaStackScreen}/>
-      <HomeStack.Screen name="Emprestimo" component ={EmprestimoStackScreen}/>
+      <HomeStack.Screen name="Emprestimos" component ={EmprestimoStackScreen}/>
+      <HomeStack.Screen name="LivroDetail" component ={LivroDetail}/>
+      <HomeStack.Screen name="PessoaDetail" component ={PessoaDetail}/>
+      <HomeStack.Screen name="EmprestimoDetail" component ={EmprestimoDetail}/>
+      <HomeStack.Screen name="ListarLivros" component ={ListarLivro}/>
+      <HomeStack.Screen name="ListarEmprestimos" component ={ListarEmprestimo}/>
     </HomeStack.Navigator>
   );
 }
@@ -75,6 +84,7 @@ function LivroStackScreen() {
   return (
     <HomeStack.Navigator screenOptions={{ headerShown:false }}>
       <HomeStack.Screen name="LivroView" component ={LivroMenu}/>
+     
       <HomeStack.Screen name='InserirLivro' component={InserirLivro} />
       <HomeStack.Screen name="AlterarLivro" component ={AlterarLivro}/>
       <HomeStack.Screen name="BuscarLivro" component ={BuscarLivro}/>
@@ -88,6 +98,7 @@ function EmprestimoStackScreen() {
   return (
     <HomeStack.Navigator screenOptions={{ headerShown:false }}>
       <HomeStack.Screen name="EmprestimoView" component ={EmprestimoMenu}/>
+      {/* <HomeStack.Screen name="EmprestimoDetail" component ={EmprestimoDetail}/> */}
       <HomeStack.Screen name='InserirEmprestimo' component={InserirEmprestimo} />
       <HomeStack.Screen name="AlterarEmprestimo" component ={AlterarEmprestimo}/>
       <HomeStack.Screen name="BuscarEmprestimo" component ={BuscarEmprestimo}/>

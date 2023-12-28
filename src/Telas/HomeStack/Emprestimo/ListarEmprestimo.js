@@ -1,4 +1,4 @@
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { FlatList, StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { PMButton } from "../../../Components/PMButton";
 
@@ -6,13 +6,28 @@ import { listarEmprestimo } from "../../../utils/Emprestimo/emprestimoController
 import { useEffect , useState } from "react";
 import { ActivityIndicator } from "react-native";
 import { Grid } from "../../../Components/Grids";
+import { buscarLivro } from "../../../utils/Livro/livroController";
+
+async function listarEmprestimosNormalizados(){
+  const response = await listarEmprestimo()
+  if(response !== undefined)
+  return response.map((item) => {
+    return {
+      emprestimoId: item.emprestimoId,
+      titulo: item.livro.titulo,
+      nome: item.pessoa.nome,
+      dataEmprestimo: item.dataEmprestimo
+    }
+  })
+}
+
 
 
 export function ListarEmprestimo({route}) {
     const navigation = useNavigation()
     const [emprestimos, setEmprestimos] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
-    const colunas = ["ID", "Nome", "Telefone"]
+    const colunas = ["ID", "Livro", "Pessoa", "Data Empréstimo"]
     // const [ colunas, setColunas ] = useState([ // Nome das Colunas
     //   "ID",
     //   "Nome",
@@ -20,7 +35,7 @@ export function ListarEmprestimo({route}) {
     //   "Status",
     //   "Tipo"
     // ])
-    const tamanhosTabela = ["14%","43%","43%"]
+    const tamanhosTabela = ["14%","30%","30%", "26%"]
     const tableHeader = () => ( // Construtor do Cabeçalho das colunas
       <View style={styles.tableHeader}>
         {
@@ -42,13 +57,15 @@ export function ListarEmprestimo({route}) {
 
 
   useEffect(()=>{
-      listarEmprestimo().then((response)=>
-          { setEmprestimos(response)
+      listarEmprestimosNormalizados().then((response)=>
+          { 
+            
+            setEmprestimos(response)
              
             setIsLoading(false)
            
           })  
-    },[])
+    }, [])
     
     if(isLoading){
       return(
@@ -65,6 +82,7 @@ export function ListarEmprestimo({route}) {
       elementos={emprestimos}
       colunas={colunas}
       tamanhosTabela={tamanhosTabela}
+      telaDetalhe={"EmprestimoDetail"}
       />
 
      

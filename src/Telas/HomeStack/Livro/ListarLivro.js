@@ -1,4 +1,4 @@
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { FlatList, StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { PMButton } from "../../../Components/PMButton";
 
@@ -39,16 +39,16 @@ export function ListarLivro({route}) {
         }
       </View>
     )
-
-
-  useEffect(()=>{
+// useFocusEffect fica chamando toda hora
+  useFocusEffect(()=>{
       listarLivro().then((response)=>
-          { setLivros(response)
+          {
+             setLivros(response)
              
             setIsLoading(false)
            
           })  
-    },[])
+    })
     
     if(isLoading){
       return(
@@ -65,7 +65,7 @@ export function ListarLivro({route}) {
       elementos={livros}
       colunas={colunas}
       tamanhosTabela={tamanhosTabela}
-      telaDetalhe="BuscarLivro"
+      telaDetalhe="LivroDetail"
       />
 
      

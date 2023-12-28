@@ -109,9 +109,9 @@ export async function buscarEmprestimo({id}) {
 }
 
 export async function excluirEmprestimo({id}) {
-    console.log(typeof(id))
-        return api.delete(`/emprestimos/${id}`)
-        .then(async (response)=>{// Enviar dados do usuário
+    
+        return api.delete(`/emprestimos/${parseInt(id)}`)
+        .then(()=>{
             return {title:"Sucesso!",
             text:"Cadastro de emprestimo excluído!"}
             
@@ -139,7 +139,7 @@ export async function listarEmprestimo() {
                     // responseData.pessoaId = "cleiton gonçalvez dos santos"
                     
                });
-               console.log(response.data) 
+            //    console.log(response.data) 
                return response.data
                
             //    return listaEmprestimos

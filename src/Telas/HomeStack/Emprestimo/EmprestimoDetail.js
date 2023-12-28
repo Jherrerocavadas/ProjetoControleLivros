@@ -275,7 +275,7 @@ export function EmprestimoDetail({ route }) {
       <DetailActionBar
         editAction={() => { setIsEditing(true) }}
         deleteAction={() => {
-          excluirEmprestimo({ id }).then((response) => {
+          excluirEmprestimo({id}).then((response) => {
             Alert.alert(response.title,
               response.text)
             navigation.goBack()

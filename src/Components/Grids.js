@@ -80,6 +80,7 @@ export function Grid({elementos, colunas, tamanhosTabela, telaDetalhe}){
             decelerationRate={'fast'}
             data={elementos}
             keyExtractor={(item, index) => index} // item mantém a key unica e não repete os dados
+            extraData={elementos}
             renderItem={({item, index})=> {
               // console.log("--------------")
               // console.log("Item:")

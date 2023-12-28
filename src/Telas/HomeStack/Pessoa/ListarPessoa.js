@@ -1,4 +1,4 @@
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { FlatList, StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { PMButton } from "../../../Components/PMButton";
 
@@ -41,14 +41,14 @@ export function ListarPessoa({route}) {
     )
 
 
-  useEffect(()=>{
+  useFocusEffect(()=>{
       listarPessoa().then((response)=>
           { setPessoas(response)
              
             setIsLoading(false)
            
           })  
-    },[])
+    })
     
     if(isLoading){
       return(
@@ -65,7 +65,7 @@ export function ListarPessoa({route}) {
       elementos={pessoas}
       colunas={colunas}
       tamanhosTabela={tamanhosTabela}
-      telaDetalhe="BuscarPessoa"
+      telaDetalhe="PessoaDetail"
       />
 
      
