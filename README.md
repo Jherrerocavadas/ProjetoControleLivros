@@ -10,7 +10,7 @@
 # Sobre
 Aplicativo Mobile ProjetoControleLivros - Sistema CRUD de controle de livros e empréstimos de livros.
 
-Esse projeto é um aplicativo CRUD de controle de livros e empréstimos dessas unidades. Entre suas funções estão:
+Esse projeto é um aplicativo CRUD de controle de livros e empréstimos dessas unidades. A ideia de criar um aplicativo veio do conceito elaborado pelo meu amigo Vinicius (Perfil do github na aba de referências). Entre suas funções estão:
 
 (Tabela Livros)
 - Cadastro de Livros.
@@ -52,34 +52,36 @@ Observação: Nem todos os recursos podem estar implementados e/ou funcionando c
       - [Com yarn](#com-yarn)
 - [Autor](#autor)
     - [Johann Herrero Cavadas](#johann-herrero-cavadas)
+- [Referências](#referencias)
+    - [Github - Vinicius](#github-vinicius)
 
 
 # Funcionalidades
 
 (OTIMIZAR COMPONENTES FUTURAMENTE)
 ### Tabela de Livros
-- [ ] Cadastro de Livros.
-- [ ] Alteração do cadastro de Livros.
-- [ ] Busca de Livros.
-- [ ] Exclusão do cadastro de Livros.
-- [ ] Listagem de Livros.
-- [ ] Detalhe da Livro ao clicar na listagem. (parcial)
+- [x] Cadastro de Livros.
+- [x] Alteração do cadastro de Livros.
+- [x] Busca de Livros. (Reformulado para a tela de detalhe)
+- [x] Exclusão do cadastro de um livro.(Realizado na tela de detalhe agora)
+- [x] Listagem de Livros.
+- [x] Detalhe do Livro ao clicar na listagem. (Ok)
 
 ### Tabela de Pessoas
 - [x] Cadastro de Pessoas.
 - [x] Alteração do cadastro de Pessoas.
-- [x] Busca de Pessoas.
-- [x] Exclusão do cadastro de Pessoas.
+- [x] Busca de Pessoas.(Reformulado para a tela de detalhe)
+- [x] Exclusão do cadastro de uma pessoa (Realizado na tela de detalhe agora).
 - [x] Listagem de Pessoas.
-- [ ] Detalhe da Pessoa ao clicar na listagem. (parcial)
+- [x] Detalhe da Pessoa ao clicar na listagem. (Ok)
 
 ### Tabela de Emprestimos
-- [ ] Cadastro de Emprestimos.
-- [ ] Alteração do cadastro de Emprestimos.
-- [ ] Busca de Emprestimos.
-- [ ] Exclusão do cadastro de Emprestimos.
-- [ ] Listagem de Emprestimos.
-- [ ] Detalhe da Emprestimo ao clicar na listagem. (parcial)
+- [x] Cadastro de Emprestimos.
+- [x] Alteração do cadastro de Emprestimos.
+- [ ] Busca de Emprestimos.(Reformulado para a tela de detalhe)
+- [x] Exclusão do cadastro de um empréstimo.(Realizado na tela de detalhe agora)
+- [x] Listagem de Emprestimos.
+- [x] Detalhe do Emprestimo ao clicar na listagem. (Ok)
 
 
 # Pré Requisitos
@@ -131,3 +133,7 @@ Observação: Nem todos os recursos podem estar implementados e/ou funcionando c
 [![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:jherrerocavadas@gmail.com?Subject=Contato%20github%20-%20Repositório%20ProjetoMobileII)
 [![Github](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Jherrerocavadas)
 
+
+# Referências
+### Github - Vinicius
+[![Github](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/viniciusVPC)
