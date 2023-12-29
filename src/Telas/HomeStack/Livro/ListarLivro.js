@@ -60,14 +60,16 @@ export function ListarLivro({route}) {
     
 
     
-    return (
+    return (  
       <Grid
       elementos={livros}
       colunas={colunas}
       tamanhosTabela={tamanhosTabela}
-      telaDetalhe="LivroDetail"
+      telaDetalhe={"LivroDetail"}
+      telaInsert={"InserirLivro"}
+      textoInsert={"Inserir novo Livro"}
       />
-
+      
      
 
 

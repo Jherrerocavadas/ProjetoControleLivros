@@ -24,7 +24,7 @@ export async function inserirLivro(navigation, titulo, autor, dataCompra){
                     "Sucesso!",
                     "Cadastro de livro concluído!"
                     )
-                    navigation.navigate('LivroView');
+                    navigation.navigate('Livros'); // Depois abrir o detalhe do livro
                 }).catch((error) => 
                 {
                     console.warn("ERRO!")

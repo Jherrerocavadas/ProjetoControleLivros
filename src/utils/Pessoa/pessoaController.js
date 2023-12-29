@@ -23,7 +23,7 @@ export async function inserirPessoa(navigation, nome, telefone){
                     "Sucesso!",
                     "Cadastro de pessoa concluído!"
                     )
-                    navigation.navigate('PessoaView');
+                    navigation.navigate('Pessoa'); // Depois abrir o detalhe da Pessoa
                 }).catch((error) => 
                 {
                     console.warn("ERRO!")

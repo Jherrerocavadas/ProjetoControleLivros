@@ -34,20 +34,24 @@ import { api } from "../../utils/utils"
 
       <PMButton BtnWidth={'80%'} BtnHeight={50} text ={"Login"} setter ={()=>
           {
-            api.get(`/pessoas/check-pessoa-service`
+            api.get(`/check-pessoa-service`).then(()=>
+
+             { 
+              let params;
+              
+              if(usuarioLogin == "")
+             {
+              console.log(usuarioLogin)
+              params = undefined}
+             else{
+              console.log(usuarioLogin)
+              params = {username: usuarioLogin}
+             }
+              navigation.navigate("Home", {
+                screen: 'Inicial',
+                params: params,
+              } )}
              
-            ).then(
-            
-              // if(response.data[0]){ // Array tem o objeto de usuário na primeira posição
-                navigation.navigate("Home")
-              // }
-              // else{ // Array vazio, indicando que o usuário não foi encontrado
-                // Alert.alert(
-                  // "Erro de Login",
-                  // "Usuário ou senha inválidos!"
-                // );
-              // }
-                
             )
             .catch((error)=>{
               console.log(error)

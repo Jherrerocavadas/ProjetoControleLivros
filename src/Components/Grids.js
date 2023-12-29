@@ -1,5 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import { FlatList, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { ListActionBar } from "./DetailActionBar";
 
 
 function elementosHeader(colunas, item){
@@ -24,7 +25,7 @@ function elementosHeader(colunas, item){
 
 
 // Componente Grid para exibição de 3 e 4 colunas
-export function Grid({elementos, colunas, tamanhosTabela, telaDetalhe}){
+export function Grid({elementos, colunas, tamanhosTabela, telaDetalhe, telaInsert, textoInsert}){
 
   const navigation = useNavigation();
   
@@ -73,6 +74,11 @@ export function Grid({elementos, colunas, tamanhosTabela, telaDetalhe}){
     
     return(
            <View style={ styles.container }>
+
+        <ListActionBar
+        insertScreen={telaInsert}
+        insertText={textoInsert}/>
+
         <FlatList
             style={{width:"90%"}}
             ListHeaderComponent={tableHeader}

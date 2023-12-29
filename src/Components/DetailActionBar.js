@@ -36,6 +36,23 @@ export function DetailActionBar({ editAction, deleteAction, disabled=false, edit
   );
 }
 
+export function ListActionBar({insertScreen, insertText, disabled=false}) {
+  const navigation = useNavigation();
+  return (
+      <View style={styles.oneButton}>
+        <Pressable
+          style={[styles.button, styles.buttonInsert]}
+          onPress={() => navigation.navigate(insertScreen)}
+          disabled={disabled} 
+        >
+          <Text style={styles.textStyle}>
+            {insertText}
+          </Text>
+        </Pressable>
+      </View>
+  );
+}
+
 const styles = StyleSheet.create({
   buttons: {
     // flex:1,
@@ -48,6 +65,17 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor:"black",
     marginBottom:15
+  },
+
+  
+  oneButton: {
+    alignItems:"center",
+   
+    width:"100%",
+    paddingVertical:6,
+    paddingStart:10,  
+    elevation:0,
+    marginBottom:5
   },
   button: {
     // borderRadius: 20,
@@ -70,6 +98,11 @@ const styles = StyleSheet.create({
   },
   buttonDelete: {
     backgroundColor: "#ff3000",
+  },
+
+  buttonInsert: {
+    backgroundColor: "#503fff",
+    paddingHorizontal: 20,
   },
   textStyle: {
     color: "white",

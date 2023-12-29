@@ -28,7 +28,7 @@ export async function inserirEmprestimo(navigation, livroId, pessoaId, dataEmpre
                         "Sucesso!",
                         "Cadastro de emprestimo concluído!"
                         )
-                        navigation.navigate('EmprestimoView');
+                        navigation.navigate('Emprestimos'); // Depois abrir o detalhe do Emprestimo
                     }).catch((error) => 
                     {
                         console.warn("ERRO!")
@@ -93,8 +93,8 @@ export async function buscarEmprestimo({id}) {
     .then(async (response)=>             
             { 
                 //Converter String de data para objeto de data
-                console.log(response.data.dataEmprestimo)
                 response.data.dataEmprestimo = new Date(response.data.dataEmprestimo)// +"T03:00:000Z")
+                response.data.livro.dataCompra = new Date(response.data.livro.dataCompra)// +"T03:00:000Z")
                 return response.data
                      
             })

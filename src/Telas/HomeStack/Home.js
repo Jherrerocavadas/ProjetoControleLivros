@@ -51,7 +51,7 @@ async function loadCountEmprestimo() {
 
 export function Home({ route }) {
   const navigation = useNavigation();
-  const user = "Johann";
+  const user = route.params? route.params.username :"Johann";
   const [countLivros, setCountLivros] = useState(0);
   const [countEmprestimos, setCountEmprestimos] = useState(0);
   const [isLoadingLivro, setIsLoadingLivro] = useState(true);
@@ -60,7 +60,6 @@ export function Home({ route }) {
    useFocusEffect(() => {
     loadCountEmprestimo()
       .then((response) => {
-        // console.log("EmprestimoResponse: " + response);
         setCountEmprestimos(response.countEmprestimo);
         setIsLoadingEmprestimo(response.isLoading);
       })
@@ -73,7 +72,6 @@ export function Home({ route }) {
   useFocusEffect(()=>{
     loadCountLivro().then((response)=>
         {
-          // console.log("LivroResponse: "+ response.countLivro)
           setCountLivros(response.countLivro)
           setIsLoadingLivro(response.isLoading)
 
@@ -93,14 +91,14 @@ export function Home({ route }) {
         counterValue={countLivros}
         isLoading={isLoadingLivro}
         isClickable={true}
-        action={()=>navigation.navigate("ListarLivros")}
+        action={()=>navigation.navigate("Livros")}
       ></EntityCounter>
       <EntityCounter
         label={"Empréstimos\nVigentes"}
         counterValue={countEmprestimos}
         isLoading={isLoadingEmprestimo}
         isClickable={true}
-        action={()=>navigation.navigate("ListarEmprestimos")}
+        action={()=>navigation.navigate("Emprestimos")}
       ></EntityCounter>
       </View>
 

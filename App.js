@@ -2,6 +2,8 @@
 import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {Ionicons, Octicons} from 'react-native-vector-icons';
 
 
 {/*---------- <Telas> ----------*/}
@@ -38,6 +40,7 @@ import { EmprestimoDetail } from './src/Telas/HomeStack/Emprestimo/EmprestimoDet
 {/*---------- <Componentes personalizados> ----------*/}
 
 const HomeStack = createNativeStackNavigator();
+const MenuTab = createBottomTabNavigator();
 
 function AuthStackScreens() {
   return(
@@ -53,58 +56,26 @@ function HomeStackScreen() {
 
   return (
     <HomeStack.Navigator screenOptions={{ headerShown:false }}>
-      <HomeStack.Screen name='Inicial' component={Home} />
-      <HomeStack.Screen name="Livros" component ={LivroStackScreen}/>
-      <HomeStack.Screen name="Pessoas" component ={PessoaStackScreen}/>
-      <HomeStack.Screen name="Emprestimos" component ={EmprestimoStackScreen}/>
+      <HomeStack.Screen name='Inicial' component={MenusTabScreen} />
+      <HomeStack.Screen name='InserirLivro' component={InserirLivro} />
+      <HomeStack.Screen name='InserirPessoa' component={InserirPessoa} />
+      <HomeStack.Screen name='InserirEmprestimo' component={InserirEmprestimo} />
       <HomeStack.Screen name="LivroDetail" component ={LivroDetail}/>
       <HomeStack.Screen name="PessoaDetail" component ={PessoaDetail}/>
       <HomeStack.Screen name="EmprestimoDetail" component ={EmprestimoDetail}/>
-      <HomeStack.Screen name="ListarLivros" component ={ListarLivro}/>
-      <HomeStack.Screen name="ListarEmprestimos" component ={ListarEmprestimo}/>
-    </HomeStack.Navigator>
-  );
-}
-
-function PessoaStackScreen() {
-  return (
-    <HomeStack.Navigator screenOptions={{ headerShown:false }}>
-      <HomeStack.Screen name="PessoaView" component ={PessoaMenu}/>
-      <HomeStack.Screen name='InserirPessoa' component={InserirPessoa} />
-      <HomeStack.Screen name="AlterarPessoa" component ={AlterarPessoa}/>
-      <HomeStack.Screen name="BuscarPessoa" component ={BuscarPessoa}/>
-      <HomeStack.Screen name="ExcluirPessoa" component ={ExcluirPessoa}/>
-      <HomeStack.Screen name="ListarPessoa" component ={ListarPessoa}/>
     </HomeStack.Navigator>
   );
 }
 
 
-function LivroStackScreen() {
+function MenusTabScreen() {
   return (
-    <HomeStack.Navigator screenOptions={{ headerShown:false }}>
-      <HomeStack.Screen name="LivroView" component ={LivroMenu}/>
-     
-      <HomeStack.Screen name='InserirLivro' component={InserirLivro} />
-      <HomeStack.Screen name="AlterarLivro" component ={AlterarLivro}/>
-      <HomeStack.Screen name="BuscarLivro" component ={BuscarLivro}/>
-      <HomeStack.Screen name="ExcluirLivro" component ={ExcluirLivro}/>
-      <HomeStack.Screen name="ListarLivro" component ={ListarLivro}/>
-    </HomeStack.Navigator>
-  );
-}
-
-function EmprestimoStackScreen() {
-  return (
-    <HomeStack.Navigator screenOptions={{ headerShown:false }}>
-      <HomeStack.Screen name="EmprestimoView" component ={EmprestimoMenu}/>
-      {/* <HomeStack.Screen name="EmprestimoDetail" component ={EmprestimoDetail}/> */}
-      <HomeStack.Screen name='InserirEmprestimo' component={InserirEmprestimo} />
-      <HomeStack.Screen name="AlterarEmprestimo" component ={AlterarEmprestimo}/>
-      <HomeStack.Screen name="BuscarEmprestimo" component ={BuscarEmprestimo}/>
-      <HomeStack.Screen name="ExcluirEmprestimo" component ={ExcluirEmprestimo}/>
-      <HomeStack.Screen name="ListarEmprestimo" component ={ListarEmprestimo}/>
-    </HomeStack.Navigator>
+    <MenuTab.Navigator screenOptions={{headerShown:false}}>
+      <MenuTab.Screen name="Home" component={Home} options={{tabBarIcon: ()=>{return <Octicons name={'home'} size={25} color={"gray"} />}}} />
+      <MenuTab.Screen name="Pessoas" component ={ListarPessoa}options={{tabBarIcon: ()=>{return <Octicons name={'person'} size={25} color={"gray"} />}}}/>
+      <MenuTab.Screen name="Livros" component ={ListarLivro}options={{tabBarIcon: ()=>{return <Octicons name={'repo'} size={25} color={"gray"} />}}}/>
+      <MenuTab.Screen name="Emprestimos" component ={ListarEmprestimo}options={{tabBarIcon: ()=>{return <Octicons name={'repo-push'} size={25} color={"gray"} />}}}/>
+    </MenuTab.Navigator>
   );
 }
 

@@ -29,6 +29,7 @@ async function getLivros() {
     })
 
   } catch (error) {
+    console.warn("ErroGetLivros:")
     console.warn(error);
   }
 }
@@ -40,44 +41,20 @@ async function getPessoas() {
       return { key: item.pessoaId, value: item.nome }
     })
   } catch (error) {
+    console.warn("ErroGetPessoas:")
     console.warn(error);
   }
 }
 
 async function getDadosEmprestimo(id) {
   try {
-    const { emprestimoId, livroId, pessoaId, dataEmprestimo } = await buscarEmprestimo({ id })
-    // let isLivroUndefined = false
-    // let isPessoaUndefined = false
-
-    const livroResponse = await buscarLivro({ id: livroId })
-    // if (livroResponse === undefined) {
-    //   livroResponse = {
-    //     "autor": "indefinido",
-    //     "dataCompra": new Date(),
-    //     "livroId": null,
-    //     "titulo": "indefinido"
-    //   }
-    //   isLivroUndefined = true
-    // }
-    const pessoaResponse = await buscarPessoa({ id: pessoaId })
-    // if (pessoaResponse === undefined) {
-    //   pessoaResponse = {
-    //     "nome": "indefinido",
-    //     "pessoaId": null,
-    //     "telefone": "00000000000" }
-    //     isPessoaUndefined = true
-    // }
-    return {
-      id: emprestimoId,
-      livro: livroResponse,
-      pessoa: pessoaResponse,
-      dataEmprestimo: dataEmprestimo,
-      // isLivroUndefined,
-      // isPessoaUndefined
-    }
+  
+      const emprestimo = await buscarEmprestimo({ id })
+    
+    return emprestimo
 
   } catch (error) {
+    console.warn("O ERRO é:")
     console.info(error);
   }
 }
@@ -100,7 +77,7 @@ export function EmprestimoDetail({ route }) {
   const [pessoasDropbox, setPessoasDropbox] = useState([]);
 
 
-
+  const [isUpdateScreen, setisUpdateScreen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [isEditing, setIsEditing] = useState(false);
 
@@ -131,7 +108,6 @@ export function EmprestimoDetail({ route }) {
 
   useEffect(() => {
     getDadosEmprestimo(id).then((response) => {
-      console.log(response)
       setLivroId(response.livro.livroId)
       setAutor(response.livro.autor)
       setDataCompra(response.livro.dataCompra)
@@ -144,6 +120,7 @@ export function EmprestimoDetail({ route }) {
       setDataEmprestimo(response.dataEmprestimo)
 
       setIsLoading(false)
+      setisUpdateScreen(false)
     })
 
       .catch(() => {
@@ -157,36 +134,10 @@ export function EmprestimoDetail({ route }) {
             style: 'default',
           },])
       })
-  }, [id])
-
-  useEffect(() => {
-    buscarLivro({ id: livroId }).then((response) => {
-      setTitulo(response.titulo)
-      setAutor(response.autor)
-      setDataCompra(response.dataCompra)
-    })
-
-      .catch((error) => {
-        console.log(error)
-      })
-  }, [livroId])
-
-
-  useEffect(() => {
-    buscarPessoa({ id: pessoaId }).then((response) => {
-      setNome(response.nome)
-      setTelefone(response.telefone)
-
-    })
-
-      .catch((error) => {
-        console.log(error)
-      })
-  }, [pessoaId])
+  }, [isUpdateScreen])
 
 
   if (isLoading) {
-    console.log("Loading")
     return (
       <View style={styles.container}>
         <DetailActionBar
@@ -200,8 +151,6 @@ export function EmprestimoDetail({ route }) {
   }
 
   if (isEditing) {
-    console.log("Editando")
-    // console.log(data)
     return (
       <View style={styles.container}>
         <DetailActionBar
@@ -209,6 +158,7 @@ export function EmprestimoDetail({ route }) {
             alterarEmprestimo({ id, livroId, pessoaId, dataEmprestimo }).then((response) => {
               Alert.alert(response.title,
                 response.text)
+              setisUpdateScreen(true)
               setIsEditing(false)
 
             }
@@ -229,7 +179,6 @@ export function EmprestimoDetail({ route }) {
           setSelected={(val) => {
             setLivroId(val)
             console.log(`O livro selecionado é: ${livroId}`)
-            console.log(livroId)
           }}
           fieldPlaceHolder={"Selecione um livro"}
           searchPlaceholder={"Procurar por título"}
@@ -248,7 +197,6 @@ export function EmprestimoDetail({ route }) {
           setSelected={(val) => {
             setPessoaId(val)
             console.log(`A pessoa selecionada é: ${pessoaId}`)
-            console.log(pessoaId)
           }}
           fieldPlaceHolder={"Selecione uma pessoa"}
           searchPlaceholder={"Procurar por nome"}
@@ -269,7 +217,6 @@ export function EmprestimoDetail({ route }) {
   }
 
 
-  console.log("Default")
   return (
     <View style={styles.container}>
       <DetailActionBar

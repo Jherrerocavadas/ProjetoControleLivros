@@ -65,7 +65,9 @@ export function ListarPessoa({route}) {
       elementos={pessoas}
       colunas={colunas}
       tamanhosTabela={tamanhosTabela}
-      telaDetalhe="PessoaDetail"
+      telaDetalhe={"PessoaDetail"}
+      telaInsert={"InserirPessoa"}
+      textoInsert={"Inserir Pessoa"}
       />
 
      

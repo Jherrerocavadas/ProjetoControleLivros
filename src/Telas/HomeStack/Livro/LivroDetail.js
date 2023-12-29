@@ -49,7 +49,6 @@ export function LivroDetail({ route }) {
     },[id])
   
     if (isLoading) {
-      console.log("Loading")
       return (
         <View style={styles.container}>
           <DetailActionBar
@@ -63,7 +62,6 @@ export function LivroDetail({ route }) {
     }
   
     if (isEditing) {
-      console.log("Editando")
       return (
         <View style={styles.container}>
           <DetailActionBar
@@ -106,9 +104,7 @@ export function LivroDetail({ route }) {
         </View>
       );
     }
-  
-  
-    console.log("Default")
+
     return (
       <View style={styles.container}>
         <DetailActionBar

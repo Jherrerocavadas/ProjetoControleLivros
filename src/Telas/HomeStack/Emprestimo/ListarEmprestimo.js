@@ -56,7 +56,7 @@ export function ListarEmprestimo({route}) {
     )
 
 
-  useEffect(()=>{
+  useFocusEffect(()=>{
       listarEmprestimosNormalizados().then((response)=>
           { 
             
@@ -65,7 +65,7 @@ export function ListarEmprestimo({route}) {
             setIsLoading(false)
            
           })  
-    }, [])
+    })
     
     if(isLoading){
       return(
@@ -77,13 +77,15 @@ export function ListarEmprestimo({route}) {
     
 
     
-    return (
-      <Grid
-      elementos={emprestimos}
-      colunas={colunas}
-      tamanhosTabela={tamanhosTabela}
-      telaDetalhe={"EmprestimoDetail"}
-      />
+    return (     
+        <Grid
+        elementos={emprestimos}
+        colunas={colunas}
+        tamanhosTabela={tamanhosTabela}
+        telaDetalhe={"EmprestimoDetail"}
+        telaInsert={"InserirEmprestimo"}
+        textoInsert={"Inserir novo Empréstimo"}
+        />
 
      
 
