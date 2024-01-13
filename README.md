@@ -46,13 +46,14 @@ Observação: Nem todos os recursos podem estar implementados e/ou funcionando c
 - [Pré Requisitos](#pré-requisitos)
       - [Hardware](#hardware)
       - [Software](#software)
+- [Variáveis de ambiente](#variáveis-de-ambiente)
 - [Tecnologias](#tecnologias)
 - [Instruções para uso do expo](#instruções-para-uso-do-expo)
       - [Com npm](#com-npm)
       - [Com yarn](#com-yarn)
 - [Autor](#autor)
     - [Johann Herrero Cavadas](#johann-herrero-cavadas)
-- [Referências](#referencias)
+- [Referências](#referências)
     - [Github - Vinicius](#github-vinicius)
 
 
@@ -94,8 +95,12 @@ Observação: Nem todos os recursos podem estar implementados e/ou funcionando c
   - Expo CLI
   - Biblioteca yarn (opcional, para gerenciar as dependências)
 
-
-
+# Variáveis de ambiente:
+  configurar arquivos .env.development (para desenvolvimento), .env.staging (para homologação) e .env.production (para produção)
+  ```
+  URL_PORT = xxxx # apenas em desenvolvimento
+  BASE_URL = xpto-url:$URL_PORT
+  ``` 
 # Tecnologias
 - [Node.js](https://nodejs.org/pt-br/)
 - [React-Native](https://reactnative.dev)
